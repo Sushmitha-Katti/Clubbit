@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gallery</title>
+</head>
+<body>
+	
+		{%for eventname,images in gallery.items%}
+			<h1>{{eventname}}</h1>
+			{%for image in images%}
+				<img src="/{{image.images}}" alt="No image">
+			{%endfor%} 
+		{%endfor%}
+	
+
+</body>
+</html>

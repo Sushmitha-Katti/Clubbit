@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Events</title>
+</head>
+<body>
+	<form action = "/see_response/" method = "POST" enctype="multipart/form-data">
+		{%csrf_token%}
+
+		<b>Name</b><input type="text" name="event_name" placeholder = "Eventname"><br><br>
+		<b>Description</b><input type="text" name="desc" placeholder="description"><br><br>
+		<b>Registration Amount</b><input type="number" name="fees" placeholder = "Amount"><br><br>
+		<b>Date</b><input type="Date" name="date" placeholder = "Date"><br><br>
+		<b>Image</b><input type="file" name="image" ><br><br>
+		<select name = "cname">
+			{%for club in clubs%}
+  		    <option value="{{club.cname}}">{{club.cname}}</option>
+			{%endfor%}
+			
+		</select>
+		<input type="submit" name="sub_button" value = "Add">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{%extends 'basehome.html'%}
+  {%block content%}
+      <form action = "/profile/" method = "POST">
+        {%csrf_token%}
+        <h2>Create Profile</h2>
+
+        <div class="form-group">
+          <label >FirstName</label>
+          <input type="text" class="form-control" name="fname" placeholder="FirstName">
+        </div>
+        <div class="form-group">
+          <label >LastName</label>
+          <input type="text" class="form-control" name="lname" placeholder="LastName">
+        </div>
+        <div class="form-group">
+          <label >Phone</label>
+          <input type="text" class="form-control" name="phone" placeholder="Phone">
+        </div>        
+        <div class="form-group">
+          <label>USN</label>
+          <input type="text" class="form-control" name="usn" aria-describedby="emailHelp" placeholder="USN">
+        </div>
+        <div class="form-group">
+          <label >College</label>
+          <input type="text" class="form-control" name="college" placeholder="College">
+        </div>
+        <div class="form-group">
+          <label >Branch</label>
+          <input type="text" class="form-control" name="branch" placeholder="Branch">
+        </div>
+        <div class="form-group">
+          <label >Sem</label>
+          <input type="int" class="form-control" name="sem" placeholder="Sem">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Create</button>
+        
+    </form>
+  {%endblock%}

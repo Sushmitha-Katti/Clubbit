@@ -1,0 +1,37 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clubs</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/home.css" %}">
+</head>
+<body>
+	
+	<form action = "/clubs/ " method = "POST">
+		{%csrf_token%}
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<ul class="navbar-nav">
+				   	<li class="nav-item active">
+				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="clubs">Clubs</button>
+       				 </li>
+				    <li class="nav-item active">
+				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="profile">Profile</button>
+       				 </li>
+				    <li class="nav-item active">
+				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="logout">Logout</button>
+       				 </li>
+				 </ul>
+			</nav>
+	
+		<h1>Clubs List</h1>
+
+		{%for club in clubs%}
+			<a href="{% url 'club_page1' club_name=club.cname %}">{{club.cname}}</a><br><br>
+		{%endfor%}
+		<br>
+		<input type="submit" name="btn" value = "Want To Create A Club?">
+		<input type="submit" name="btn" value = "Club Admin Login">
+	</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+body{
+	background-color: url('bgimages/clubbg.jpg') no-repeat;
+	background-size: cover;
+	height = 100%;
+
+
+}
+
+.container{
+	 margin-left: auto;
+    margin-right: auto;
+   
+    padding: 120px;
+	
+}
+.cardedit{
+	padding:10px;
+}

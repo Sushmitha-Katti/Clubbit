@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>admin login</title>
+</head>
+<body>
+	<form action="" method = "POST">
+		{%csrf_token%}
+		USN <input type="text" name="usn"><br>
+		Password <input type="Password" name="Password"><br>
+		Club
+		<select name = "cname">
+			{%for club in clubs%}
+  		    <option value="club.cname">{{club.cname}}</option>
+			{%endfor%}
+			
+		</select>
+		<br>
+
+		<input type="submit" value="login">
+	</form>
+
+</body>
+</html>

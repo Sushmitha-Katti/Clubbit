@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Club Events</title>
+</head>
+<body>
+
+	<form action = "" method ="POST">
+	{%csrf_token%}
+		{%for e in events%}
+		<h1>{{e.ename}}</h1>
+		<img src="/{{e.image}}" alt="No image"> 
+		<p>{{e.desc}}</p>
+		<b>Fees:</b> {{e.fees}}<br>
+		<b>Date :</b> {{e.date}}<br><br>
+		<input type="Submit" value="Register for {{e.ename}}">
+		{% endfor %}
+	</form>	
+
+	
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{%extends 'basehome.html'%}
+  {%block content%}
+      <form action = "/signin/" , method = "POST">
+      {%csrf_token%}
+        <div class="form-group">
+          <label for="exampleInputEmail1">User Name</label>
+          <input type="text" class="form-control" name = 'user' aria-describedby="emailHelp" placeholder="Enter user name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% url 'signup' %}">SignUp</a>
+
+    </form>
+  {%endblock%}

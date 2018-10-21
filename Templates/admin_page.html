@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin page</title>
+
+</head>
+<body>
+	<form action = "" method = "POST">
+		{%csrf_token%}
+		<input type="submit" name="btn" value = "Add Members"><br><br>
+		<input type="submit" name="btn" value = "Add Events"><br><br>
+		<input type="submit" name="btn" value = "Requests"><br><br>
+		<input type="submit" name="btn" value = "Participants Registered"><br><br>
+		<input type="submit" name="btn" value = "Add Images">
+		<select name = 'cname'>
+			{%for club in clubs%}
+  		    <option value="{{club.cname}}">{{club.cname}}</option>
+			{%endfor%}
+			
+		</select>
+	</form>
+
+</body>
+</html>
