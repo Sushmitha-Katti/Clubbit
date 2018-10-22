@@ -11,8 +11,23 @@ def home(request):
 		return redirect(f"/clubs/")
 
 def show_clubs(request):
-	
 
+	if not request.user.is_authenticated:
+		nav = 0
+	else:
+		nav = 1
+
+	mem = 0
+	try:
+		profile = Profile.objects.get(user = request.user)
+		member = Member.objects.get(profile = profile)
+		if member.type_of_user == 'A':
+			mem = 1
+		elif member.type_of_user == 'CA':
+			mem = 2
+	except:
+		pass
+	
 	
 	if request.method =="POST":
 
@@ -22,7 +37,16 @@ def show_clubs(request):
 			return redirect(f"/profile/")
 		if request.POST.get('btn') =="logout" :
 			logout(request)
-			return HttpResponse("Successfully LoggedOut")
+			return redirect("/clubs/")
+		if request.POST.get('btn') =="SignIn" :
+			logout(request)
+			return redirect('/signin/')
+		if request.POST.get('btn') =="SignUp" :
+			logout(request)
+			return redirect("/signup/")
+		if request.POST.get('btn') =="Manage" :
+			logout(request)
+			return redirect("/adminlogin/")
 
 
 		if request.POST.get('btn') =="Want To Create A Club?" :
@@ -33,8 +57,8 @@ def show_clubs(request):
 			pass
 
 	clubs = Club.objects.all()
-	print(clubs)
-	return render(request, "showclubs.html", {'clubs': clubs}) 
+
+	return render(request, "showclubs.html", {'clubs': clubs, 'nav' : nav, 'mem' : mem}) 
 
 
 
@@ -45,6 +69,9 @@ def club_page(request, club_name):
 	if request.method=="POST":
 
 		if request.POST.get('btn')=='Home':
+			return redirect("/clubs/")
+
+		if request.POST.get('btn')=='Club':
 			return render(request, "club_page.html", {'clubs':clubs})
 
 		if request.POST.get('btn')=='About':
@@ -62,34 +89,67 @@ def club_page(request, club_name):
 
 			return render(request, "gallery.html", {'events':events , 'gallery':gallery})
 
-		if request.POST.get('btn')=='Join Club':
-			pass
+		if request.POST.get('btn')=='joinclub':
+			profile = Profile.objects.get(user=request.user)
+			request = Request(member=profile, club = clubs)
+			request.save()
+
+			return HttpResponse("Requested to join the club")
+		for event in events:
+			register = 'Register for ' + event.ename
+			print(register)
+			if request.POST.get('sub_btn') == register:
+				profile = Profile.objects.get(user=request.user)
+				event = Event.objects.get(ename = event.ename)
+				registered = Registered_members(ename = event, details = profile)
+				registered.save()
+				return HttpResponse("Successfully registerd to event")
+
 	return render(request, "club_page.html", {'clubs':clubs })
 
 
 
 def admin_login(request):
+	try:
+		profile = Profile.objects.get(user = request.user)
+		member = Member.objects.get(profile = profile)
+		if member.type_of_user != 'A' or not request.user.is_authenticated:
+			return HttpResponse("Only admin can login")
+	except : 
+		if not request.user.is_authenticated:
+			return HttpResponse(" Sorry Only college admin can login")
+
+
+	profile = Profile.objects.get(user = request.user)
+	member = Member.objects.get(profile = profile)
+	events = Event.objects.filter(club_name = member.club)
 	if request.method == 'POST':
 		if request.POST.get('btn') == 'Add Members':
-			return render(request, "add_members.html")
+			return render(request, "add_members.html", {'events' : events})
 
 		if request.POST.get('btn') == 'Add Events':
-			clubs = Club.objects.all()
-			return render(request, "add_events.html", {'clubs':clubs})
+			
+			return render(request, "add_events.html",{'events' : events} )
 
-		if request.POST.get('btn') == 'Requests':
-			return render(request, "see_requests.html")
+		if request.POST.get('btn') == 'Home':
+			return redirect("/clubs/")
 
-		if request.POST.get('btn') == 'Participants Registered':
-			return render(request, "registered_participants.html")
+
+		if request.POST.get('dbbtn') == 'Participants Registered':
+			profile = Profile.objects.get(user = request.user)
+			member = Member.objects.get(profile = profile)
+			events = Event.objects.filter(club_name = member.club)
+			return render(request, "registered_participants.html", {'events':events})
 
 		if request.POST.get('btn') == 'Add Images':
-			club_name = request.POST.get('cname')
-			club = Club.objects.get(cname = club_name)
-			events = Event.objects.filter(club_name = club)
+
+			profile = Profile.objects.get(user = request.user)
+			member = Member.objects.get(profile = profile)
+			events = Event.objects.filter(club_name = member.club)
 			return render(request, "add_photos.html",{'events':events})
-	clubs = Club.objects.all()
-	return render(request, "admin_page.html",{'clubs' : clubs})
+	
+	print(events)
+	return render(request, "admin_page.html",{'events' : events})
 
 
 
@@ -115,12 +175,10 @@ def see_response(request):
 			date = request.POST.get('date')
 			fees = request.POST.get('fees')
 			image = request.FILES.get('image')
-			cname = request.POST.get('cname')
-			print(cname)
-			club = Club.objects.get(cname = cname)
-			print(club)
-
-			event = Event(ename = name, desc = desc, image = image, fees = fees, date = date, club_name =club)
+			print(request.user)
+			profile = Profile.objects.get(user = request.user)
+			member = Member.objects.get(profile = profile)
+			event = Event(ename = name, desc = desc, image = image, fees = fees, date = date, club_name =member.club)
 			event.save()
 			return render(request, 'admin_page.html')
 
@@ -147,8 +205,7 @@ def signin(request):
 		user = authenticate(request, username=user, password=password)
 		if user is not None:
 			login(request, user)
-			clubs = Club.objects.all()
-			return render(request, 'showclubs.html', {'clubs':clubs})
+			return redirect("/clubs/")
 
 	return render(request, 'signin.html')
 
@@ -163,8 +220,8 @@ def signup(request):
 			user = User.objects.create_user(username, email, password)
 			user.save()
 			login(request, user)
-			clubs = Club.objects.all()
-			return render(request, 'showclubs.html', {'clubs' : clubs})
+			return redirect("/clubs/")
+			
 		
 	return render(request, "signup.html")
 

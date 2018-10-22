@@ -1,19 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Add Members</title>
-</head>
-<body>
-	<form action = "/see_response/" method = "POST" >
-		{%csrf_token%}
-		<b>Name</b><input type="text" name="name" placeholder="Enter name"><br><br>
-		<b>USN</b><input type="text" name="usn" placeholder="Enter USN"><br><br>
-		<b>Phone</b><input type="text" name="phone" placeholder = "Enter Phone No"><br><br>
-		<b>Branch</b><input type="text" name="branch" placehoder = "Enter Branch"><br><br>
-		<b>Sem</b><input type="integer" name="sem"><br><br>
-		<input type="Submit" name="sub_button" value = "Save">
-		<input type="Submit" name="sub_button" value = "Save and Add Another">
-	</form>
+{%extends 'admin_base.html'%}
+{%block form%}
 
-</body>
-</html>
+<div class="card">
+    <div class="card-body">	
+    	<form action = "/see_response/" method = "POST" >
+    		{%csrf_token%}
+    		<b>Add Members</b>
+    		<br>
+    		<br>
+    		<div class="form-group">
+              <label >Name</label>
+              <input type="text" class="form-control" name = 'user' aria-describedby="emailHelp" placeholder="Enter user name">
+            </div>
+            <div class="form-group">
+              <label>USN</label>
+              <input type="text" class="form-control" name="usn" placeholder="Enter USN">
+            </div>
+            <div class="form-group">
+              <label>Phone No</label>
+              <input type="text" class="form-control" name="phone" placeholder = "Enter Phone No">
+            </div>
+            <div class="form-group">
+              <label>Branch</label>
+              <input type="text" class="form-control" name="branch" placeholder = "Enter Branch">
+            </div>
+           	<div class="form-group">
+              <label>Sem</label>
+              <input class="form-control" type="integer" name="sem">
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="sub_button" value = "Save">Save</button>
+            <button type="submit" class="btn btn-primary" name="sub_button" value = "Save and Add Another">Save and Add Another</button>
+         
+        </form>
+      </div>
+    </div>
+ {%endblock%}

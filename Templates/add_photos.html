@@ -1,24 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Add Images</title>
-</head>
-<body>
-	<h1>Add Photos</h1>
-	
-	<form action = "/see_response/" method = "POST" enctype="multipart/form-data">
-		{%csrf_token%}
-		<select name = "ename">
-			{%for event in events%}
-  		    <option value="{{event.ename}}">{{event.ename}}</option>
-			{%endfor%}	
-		</select>
-		<br><br>
-			<b>Add Image</b><input type="file" name="image" ><br><br>
-		
-		<input type ="submit" name ="btn" value = "Save and Add Another">
-		<input type="submit" name="btn" value = "Save"> 
-	</form>
+{%extends 'admin_base.html'%}
 
-</body>
-</html>
+{%block form%}
+<div class="card">
+  	<div class="card-body">
+	
+			<form action = "/see_response/" method = "POST" enctype="multipart/form-data">
+				{%csrf_token%}
+				
+				<b>Add Images</b>
+				<br>
+				<br>
+				<div class="form-group">
+		          <label >Event Name</label>
+		          <select name = "ename">
+					{%for event in events%}
+		  		    <option value="{{event.ename}}">{{event.ename}}</option>
+					{%endfor%}	
+				</select>
+		        </div>
+		        <div class="form-group">
+		          <label>Add Image</label>
+		          <input  class="form-control" type="file" name="image">
+		        </div>
+		        
+		        
+
+		        <button type="submit" class="btn btn-primary" name="btn" value = value = "Save and Add Another">Save And Add</button>
+		        <button type="submit" class="btn btn-primary" name="btn" value = "Save" >Save</button>
+
+		   
+			</form>
+		</div>
+	</div>
+
+{%endblock%}

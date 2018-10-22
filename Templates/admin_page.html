@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Admin page</title>
-
-</head>
-<body>
-	<form action = "" method = "POST">
-		{%csrf_token%}
-		<input type="submit" name="btn" value = "Add Members"><br><br>
-		<input type="submit" name="btn" value = "Add Events"><br><br>
-		<input type="submit" name="btn" value = "Requests"><br><br>
-		<input type="submit" name="btn" value = "Participants Registered"><br><br>
-		<input type="submit" name="btn" value = "Add Images">
-		<select name = 'cname'>
-			{%for club in clubs%}
-  		    <option value="{{club.cname}}">{{club.cname}}</option>
-			{%endfor%}
+{%extends 'admin_base.html'%}
+{%block content%}
+			<button  class="btn btn-info" type = 'submit' value = "Add Members" name = 'btn'>Add Members</button>
+			<button  class="btn btn-info" type = 'submit' name = 'btn' value = 'Add Events'>Add Events</button>
+			<button  class="btn btn-info" type = 'submit' name = 'btn', value = 'Add Images'>Add Images</button>
 			
-		</select>
-	</form>
-
-</body>
-</html>
+		</form>
+{%endblock%}
