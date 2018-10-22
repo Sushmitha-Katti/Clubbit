@@ -28,7 +28,8 @@ urlpatterns = [
     path('signin/', signin, name = 'signin'),
     path('signup/', signup, name = 'signup'),
     path('profile/', profile, name = 'profile'),
-    path('', home, name = 'name')
+    path('', home, name = 'name'),
+    path ('collegeadmin/', cadmin, name = 'cadmin'),
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -4,14 +4,10 @@ from django.contrib.auth import authenticate, login ,logout
 
 
 def home(request):
-	print(request.user)
-	if not request.user.is_authenticated:
-		return render(request, 'home.html')
-	else :
-		return redirect(f"/clubs/")
+	return redirect(f"/clubs/")
 
 def show_clubs(request):
-
+	print(request.user)
 	if not request.user.is_authenticated:
 		nav = 0
 	else:
@@ -45,7 +41,6 @@ def show_clubs(request):
 			logout(request)
 			return redirect("/signup/")
 		if request.POST.get('btn') =="Manage" :
-			logout(request)
 			return redirect("/adminlogin/")
 
 
@@ -110,9 +105,13 @@ def club_page(request, club_name):
 
 
 def admin_login(request):
+	print(request.user)
+
+	
 	try:
 		profile = Profile.objects.get(user = request.user)
 		member = Member.objects.get(profile = profile)
+		
 		if member.type_of_user != 'A' or not request.user.is_authenticated:
 			return HttpResponse("Only admin can login")
 	except : 
@@ -120,8 +119,7 @@ def admin_login(request):
 			return HttpResponse(" Sorry Only college admin can login")
 
 
-	profile = Profile.objects.get(user = request.user)
-	member = Member.objects.get(profile = profile)
+	
 	events = Event.objects.filter(club_name = member.club)
 	if request.method == 'POST':
 		if request.POST.get('btn') == 'Add Members':
@@ -198,16 +196,21 @@ def see_response(request):
 				return render(request, 'admin_page.html', {'clubs' : clubs})
 
 def signin(request):
+	correct = 1
 	if request.method == 'POST':
 		user = request.POST.get('user')
 		password = request.POST.get('password')
 		
 		user = authenticate(request, username=user, password=password)
 		if user is not None:
+			print(user)
 			login(request, user)
 			return redirect("/clubs/")
+		else:
+			correct = 0
+			return render(request, 'signin.html', {'correct' : correct})
 
-	return render(request, 'signin.html')
+	return render(request, 'signin.html', {'correct' : correct})
 
 def signup(request):
 	if request.method == 'POST':
@@ -246,3 +249,14 @@ def profile(request):
 	return render(request, "profile.html")
 
 	
+def cadmin(request):
+	try:
+		profile = Profile.objects.get(user = request.user)
+		member = Member.objects.get(profile = profile)
+		if member.type_of_user != 'CA' or not request.user.is_authenticated:
+			return HttpResponse("Sorry Only college admin can login")
+	except : 
+		if not request.user.is_authenticated:
+			return HttpResponse(" Sorry Only college admin can login")
+
+	return render(request, 'cadmin.html')
