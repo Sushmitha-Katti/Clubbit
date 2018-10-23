@@ -16,3 +16,10 @@ body{
 .cardedit{
 	padding:10px;
 }
+
+.clubbg{
+	 height: 50%;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

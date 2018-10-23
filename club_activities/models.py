@@ -22,8 +22,12 @@ class Club(models.Model):
 	motto = models.CharField(max_length = 500)
 	image = models.ImageField(upload_to = 'static/club_image')
 	about = models.TextField()
-	misson = models.TextField(blank = 'True')
-	vission = models.TextField(blank = 'True')
+	mission = models.TextField(blank = 'True')
+	vision = models.TextField(blank = 'True')
+	shortdesc = models.TextField(null = 'True')
+	phone = models.CharField(max_length = 100, null = 'True')
+	mail = models.CharField(max_length = 100, null = 'True')
+
 
 	def __str__(self):
 		return self.cname
@@ -38,6 +42,12 @@ class Event(models.Model):
 	image = models.ImageField(upload_to = 'static/event_image', blank = True)
 	fees = models.IntegerField()
 	date =models.DateField()
+	smalldesc = models.TextField(null = True)
+	popularity = (
+	(1, 'Add_In_front'),
+	(0, 'Dont_add'))
+	
+	popular = models.IntegerField(choices = popularity, default = 0 )
 
 	def __str__(self):
 		return self.ename
@@ -59,6 +69,7 @@ class Member(models.Model):
 class Gallery(models.Model):
 	ename = models.ForeignKey(Event, on_delete = models.CASCADE)
 	images = models.ImageField(upload_to = 'static/gallery', blank = True)
+
 	def __str__(self):
 		return self.ename.ename
 

@@ -1,10 +1,84 @@
 {%extends 'club_page_base.html'%}
 {%block content%}
-	<img src="/{{clubs.image}}" alt="No image">
-	<h3>Motto</h3>
-	<p>{{clubs.motto}}</p>
-	<button type="submit" class="btn btn-primary" name = 'btn' value = "joinclub">JoinClub</button>
-{%endblock%}
+	<img class = "clubbg" class="img-fluid" src="/{{clubs.image}}" alt="No image">
+
+
+<form action = "" method = "POST">
+{%csrf_token%}
+
+	<div class="container">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+				<div class="card text-center" >
+  					<div class="card-body">
+    					<h2 class="card-title"><b>Welcome To {{clubs.cname}}</b></h2>
+   					    <p class="card-text">{{clubs.shortdesc}}</p>
+   						<button type="submit" class="btn btn-primary" name = 'btn' value = "joinclub">JoinClub</button>
+  					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="container" style = "padding-top : 2%;">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+				<div class="card text-center" >
+  					<div class="card-body">
+    					<h5 class="card-title"><b>Our Events</b></h5>
+   					    
+   					    	<div class = "row">
+   					    		{%for event in events%}
+   					    			{%if event.popular == 1%}
+   					    			<div class = "col-sm"> 
+   					    				<img class="card-img-top" src="/{{event.image}} " alt="No image">
+   					    				<h5 class="card-title">{{event.ename}}</h5>
+   					    			</div>
+   					    			{%endif%}
+   					    		{%endfor%}
+   					    	</div>
+   					    	<button class="btn btn-primary" type="submit" name="btn" value="Events" id = "text">Know More</button>
+   					   
+  					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="container -fluid" >
+  		<div class = "row">
+  			<div class="col-sm">
+						<br>
+    				   <b>Contact Us</b></h5><br>
+   					   <b>Phone</b></label>  {{clubs.phone}}<br>
+   					   <label><b>Email</b>   {{clubs.mail}}
+  					
+			
+			</div>
+			<div class = "col-sm"></div>
+			<div class = "col-sm"></div>
+			<div class = "col-sm"></div>
+			
+			<div class="col-sm">
+					<br>
+    				<b>Follow Us</b><br>
+   					<div id = "social">
+	  		
+					  	<a href="https://www.facebook.com" class="fa fa-facebook" ></a>
+					 	<a href="https://www.instagram.com" class="fa fa-instagram"></a>
+  					</div>
+			</div>
+
+		</div>
+	</div>
+	
+
+
+
 </form>
-</body>
-</html>
+
+								
+						
+		
+
+{%endblock%}

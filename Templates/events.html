@@ -1,14 +1,94 @@
 {% extends 'club_page_base.html'%}
+
 {%block content%}
-		{%for e in events%}
-		<h1>{{e.ename}}</h1>
-		<img src="/{{e.image}}" alt="No image"> 
-		<p>{{e.desc}}</p>
-		<b>Fees:</b> {{e.fees}}<br>
-		<b>Date :</b> {{e.date}}<br><br>
-		<input type="Submit" value="Register for {{e.ename}}" name = "sub_btn">
-		{% endfor %}
-	</form>	
-{%endblock%}
+		
+
 
 	
+<form action = "" method = "POST">
+	{%csrf_token%}
+
+<div class="container">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+					<div class= 'container'>
+						<br><h1 class="alert alert-warning">Our Upcoming Events</h1><br><hr><br>
+					</div>
+
+				{%for e in events%}
+				{%if e.date > today%}
+				<div class= 'container'>
+					<h2>{{e.ename}}</h2>
+					
+
+					
+						
+						<div class="card" >
+
+		  					<div class="card-body">
+		  						<div class = 'row'>
+		  							<div class = 'col-sm'>
+		  						
+		  								<img class="card-img-top" src="/{{e.image}}" alt="No Image" style= "height: 18rem;">
+
+										
+										<br><br><p>{{e.desc}}</p>
+		   					    		<h5><b>Resgistration Fees : {{e.fees}}<br></b></h5>
+		   					    		<h5><b>Date : {{e.date}}<br></b></h5>
+		   					    		<button type="submit" class="btn btn-primary" value="Register for {{e.ename}}" name = "sub_btn">Register</button>
+		   					    	</div>
+		   					    	
+		   						</div>
+		  					</div>
+						</div>
+				</div>
+				{%endif%}
+		
+				{%endfor%}
+					
+			</div>
+	</form>
+		<div class="row justify-content-start">
+  			<div class="col-md-12">
+					<div class= 'container'>
+						<br><h1 class="alert alert-warning">Our Past Events</h1><br><hr><br>
+					</div>
+
+				{%for e in events%}
+				{%if e.date < today%}
+				<div class= 'container'>
+					<h2><br>{{e.ename}}<br></h2>
+					
+
+					
+						
+						<div class="card" >
+
+		  					<div class="card-body">
+		  						<div class = 'row'>
+		  							<div class = 'col-sm'> 
+		  								<img class="card-img-top" src="/{{e.image}}" alt="No Image" style="height: 18rem;">
+
+										
+										<br><br><p>{{e.desc}}</p>
+		   					    	
+		   					    	</div>
+		   					    	
+		   						</div>
+		  					</div>
+						</div>
+				</div>
+				{%endif%}
+		
+				{%endfor%}
+					
+			</div>
+
+
+
+		</div>
+
+			
+			</form>	
+
+{%endblock%}

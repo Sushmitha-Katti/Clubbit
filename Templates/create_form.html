@@ -1,9 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>form</title>
-</head>
-<body>
+{%extends 'basehome.html'%}
+
+{%block nav%}
+
+
+	<form action = "/clubs/ " method = "POST">
+		{%csrf_token%}
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<ul class="navbar-nav">
+				   	<li class="nav-item active">
+				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="clubs">Clubs</button>
+       				 </li>
+				    	<li class="nav-item active">
+				   	 		<button class="btn btn-link" role="link" type="submit" name="btn" value="profile">Profile</button>
+       				 	</li>
+					    <li class="nav-item active">
+					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="logout">Logout</button>
+	       				 </li>
+				 </ul>
+			</nav>
+	</form>
+{%endblock%}
+{%block content%}
 	<form action = "" method = "POST">
 		{%csrf_token%}
 		Club Name <input type="text" name="cname"><br>
@@ -11,6 +28,5 @@
 		USN <input type="text" name="usn"><br>
 		<input type="submit" value="submit" name = 'sub_btn'>
 	</form>
+{%endblock%}
 
-</body>
-</html>

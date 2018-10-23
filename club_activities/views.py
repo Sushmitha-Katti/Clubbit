@@ -1,7 +1,7 @@
-from django.shortcuts import render, HttpResponse, redirect 
+from django.shortcuts import render, HttpResponse, redirect, render_to_response 
 from club_activities.models import *
 from django.contrib.auth import authenticate, login ,logout
-
+from datetime import date
 
 def home(request):
 	return redirect(f"/clubs/")
@@ -28,18 +28,17 @@ def show_clubs(request):
 	if request.method =="POST":
 
 		if request.POST.get('btn') =="clubs" :
-			return redirect(f"/signin/")
+			return redirect(f"/clubs/")
 		if request.POST.get('btn') =="profile" :
 			return redirect(f"/profile/")
 		if request.POST.get('btn') =="logout" :
 			logout(request)
 			return redirect("/clubs/")
 		if request.POST.get('btn') =="SignIn" :
-			logout(request)
 			return redirect('/signin/')
 		if request.POST.get('btn') =="SignUp" :
-			logout(request)
 			return redirect("/signup/")
+
 		if request.POST.get('btn') =="Manage" :
 			return redirect("/adminlogin/")
 
@@ -48,7 +47,7 @@ def show_clubs(request):
 			return render(request, "create_form.html")
 		if request.POST.get('btn') == "Club Admin Login":
 			return render(request,"admin_login.html",{'clubs':clubs})
-		if request.Post.get('sub_button') == "submit":
+		if request.POST.get('sub_button') == "submit":
 			pass
 
 	clubs = Club.objects.all()
@@ -60,7 +59,7 @@ def show_clubs(request):
 def club_page(request, club_name):
 	
 	clubs = Club.objects.get(cname = club_name)
-	events = Event.objects.filter(club_name = clubs)
+	events = Event.objects.filter(club_name = clubs )
 	if request.method=="POST":
 
 		if request.POST.get('btn')=='Home':
@@ -73,14 +72,15 @@ def club_page(request, club_name):
 			return render(request, "about.html", {'clubs':clubs})
 
 		if request.POST.get('btn')=='Events':
-			return render(request, "events.html", {'events':events})
+			return render(request, "events.html", {'events':events, 'today': date.today()})
 
 		if request.POST.get('btn')=='Gallery':
 			gallery = {}
 			for e in events:
 				g = Gallery.objects.filter(ename = e)
-				gallery[e.ename] = g
-				print(gallery)
+				print(g)
+				if g.exists():
+					gallery[e.ename] = g
 
 			return render(request, "gallery.html", {'events':events , 'gallery':gallery})
 
@@ -100,7 +100,10 @@ def club_page(request, club_name):
 				registered.save()
 				return HttpResponse("Successfully registerd to event")
 
-	return render(request, "club_page.html", {'clubs':clubs })
+	
+	clubs = Club.objects.get(cname = club_name)
+	events = Event.objects.filter(club_name = clubs )
+	return render(request, "club_page.html", {'clubs':clubs, 'events' : events})
 
 
 

@@ -1,13 +1,29 @@
 {% extends 'club_page_base.html'%}
 {%block content%}
-		{%for eventname,images in gallery.items%}
-			<h1>{{eventname}}</h1>
-			{%for image in images%}
-				<img src="/{{image.images}}" alt="No image">
-			{%endfor%} 
-		{%endfor%}
-
-{%endblock%}
-
+	
 	
 
+<div class="container" style = "padding-top : 2%;">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+	   					    {%for eventname,images in gallery.items%}
+	   					     	<div class = "row">
+	   					     		<div class = col-sm>
+	   					     			<h1 style = "text-llign:center";><b><br>{{eventname}}</b><br><hr><br></h1>
+	   					     		</div>
+	   					     	</div>
+	   					    	<div class = "row">
+	   					    			{%for image in images%}
+	   					    			<div class = "col-sm"> 
+	   					    				<img class="img-thumbnail" src="/{{image.images}} " alt="No image">
+	   					    			</div>
+	   					    			{%endfor%}
+	   					    			<br><br><br>
+	   					    	</div>
+	   					    {%endfor%}
+			</div>
+
+		</div>
+	</div>
+
+{%endblock%}

@@ -1,36 +1,84 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Club Management</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static "CSS/home.css" %}">
+
+
+<style>
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.clubbg{
+
+    
+    height: 70%;
+    width:100%; 
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 3%;
+}
+.ebg{
+
+    
+   
+    width:100%; 
+
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+
+
+</style>
+
 </head>
 <body>
 	
 		<form action = "" method = "POST">
 		{%csrf_token%}
+		
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class = "container">
 						<ul class="navbar-nav">
+							<div class = "nav">
 							<li class="nav-item active">
+
 								
-						   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Home">Home</button>
+						   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Home" id = "text">Home</button>
 						   	</li>
 						   	<li class="nav-item active">
 								
-						   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Club">Club</button>
+						   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Club" id = "text">Club</button>
 						   	</li>
 						   	<li class="nav-item active">
-						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="About">About</button>
+						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="About" id = "text">About</button>
 						    </li>
 						    <li class="nav-item active">
-						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="Events">Events</button>
+						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="Events" id = "text">Events</button>
 						    </li>
 						    <li class="nav-item active">
-						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="Gallery">Gallery</button>
+						    	<button class="btn btn-link" role="link" type="submit" name="btn" value="Gallery" id = "text">Gallery</button>
 						    </li>
 						 </ul>
 					</div>
 			</nav>
+		</div>
 		</form>
 
 		{%block content%}{%endblock%}

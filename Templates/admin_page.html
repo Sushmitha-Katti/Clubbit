@@ -1,5 +1,7 @@
 {%extends 'admin_base.html'%}
 {%block content%}
+	<form action = "" method = "POST">
+		{%csrf_token%}
 			<button  class="btn btn-info" type = 'submit' value = "Add Members" name = 'btn'>Add Members</button>
 			<button  class="btn btn-info" type = 'submit' name = 'btn' value = 'Add Events'>Add Events</button>
 			<button  class="btn btn-info" type = 'submit' name = 'btn', value = 'Add Images'>Add Images</button>

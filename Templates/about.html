@@ -1,5 +1,55 @@
 {% extends 'club_page_base.html'%}
 {%block content%}
-	<H1>About</H1>
-	<p>{{clubs.about}}</p>
+ <div class = 'container'>
+	<h1>About US<br><hr><br></h1>
+</div>
+
+	
+
+	<div class="container">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+					<div class= 'container'>
+						<h2 >Our Mission and Vision</h2>
+					</div>
+				<div class="card" >
+
+  					<div class="card-body">
+  						<div class = 'row'>
+  							<div class = 'col-sm'>
+								<h5 class="card-title">Mission</h5>
+
+   					    		<p class="card-text">{{clubs.mission}}</p>
+   					    	</div>
+   					    	<div class = 'col-sm'>
+   					    		<h5 class="card-title">Vision</h5>
+   					    		<p class="card-text">{{clubs.vision}}</p>
+   					    	</div>
+   						</div>
+  					</div>
+				</div>
+			</div>
+
+	<div class="container">
+  		<div class="row justify-content-start">
+  			<div class="col-md-12">
+					<div class= 'container'>
+						<h2><br><br>What we do?</h2>
+					</div>
+				<div class="card" >
+					
+  					<div class="card-body">
+  						<div class = 'row'>
+  							<div class = 'col-sm'>
+   					    		<p class="card-text">{{clubs.about}}</p>
+   					    	</div>
+   					    	
+   						</div>
+  					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 {%endblock%}
