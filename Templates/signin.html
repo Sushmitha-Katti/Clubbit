@@ -3,38 +3,59 @@
 {%block nav%}
 <form action = "/clubs/ " ,method = "POST">
     {%csrf_token%}
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-              <button class="btn btn-link" role="link" type="submit" name="btn" value="clubs">Clubs</button>
-            </li>
-            <li class="nav-item active">
-              <button class="btn btn-link" role="link" type="submit" name="btn" value="aboutus">AboutUs</button>
-            </li>
-            <li class="nav-item active">
-              <button class="btn btn-link" role="link" type="submit" name="btn" value="SignUp">SignUp</button>
-            </li>
-        </ul>
-      </nav>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'showclubs' %}">Clubs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">AboutUs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href ="{% url 'signup' %}">SignUp</a>
+    </li>
+  </ul>
+</nav>
   </form>
 {%endblock%}
 
   {%block content%}
       <form action = "/signin/" , method = "POST">
       {%csrf_token%}
+        <div class = "row">
+          <div class = 'col-sm'></div>
+          <div class = 'col-sm'>
+            <h3><b>SignIn</b></h3>
+            
+          </div>
+          <div class = 'col-sm'></div>
+        </div>
+
         {%if correct == 0%}
         Oops!! Seems like you entered the wrong username or password. Try again<br>
         {%endif%}
         <div class="form-group">
-          <label for="exampleInputEmail1">User Name</label>
+          <label >User Name</label>
           <input type="text" class="form-control" name = 'user' aria-describedby="emailHelp" placeholder="Enter user name">
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+        <div>
+          <label>Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+        <div class = "row">
+          <div class = 'col-sm'></div>
+          <div class = 'col-sm'>
+            <button type="submit" class="btn btn-primary">Submit</button><br><br>
+        
+           
+            
+          </div>
+          <div class = 'col-sm'></div>
+        </div>
         New User? <a href="{% url 'signup' %}">SignUp</a>
+
+
+        
 
     </form>
   {%endblock%}

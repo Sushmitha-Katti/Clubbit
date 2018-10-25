@@ -1,0 +1,72 @@
+{%extends 'admin_base.html'%}
+{%block content%}
+<div class = row>
+	<div class = col-sm>
+		<div class = 'container'>
+			<div class="card">
+				<div class="card-body">
+					<form action = "" method = "POST" enctype="multipart/form-data" id = 'tarea'>
+						{%csrf_token%}
+						<h3><b>Update club details</b></h3>
+						<br>
+						<br>
+						<div class ="club-color">
+							<div class="form-group">
+								<label><b>Club Name</b></label>
+								<input type="text" class="form-control" name="cname" value = '{{club.cname}}'>
+							</div>
+							<div class="form-group">
+								<label><b>Motto</b></label>
+								<input type="text" class="form-control" name="motto" value = "{{club.motto}}" >
+							</div>
+							<div class="form-group">
+								<label><b>Image</b></label>
+								<input class="form-control" type="file" name="image" value = "{{club.image}}">
+							</div>
+							<div class="form-group">
+								<label><b>About</b></label>
+								<textarea rows="4" cols="73" name="about" value="{{club.about}}">{{club.about}}
+								</textarea>
+							</div>
+							
+							<div class="form-group">
+								<label><b>Mission</b></label>
+								<textarea rows="4" cols="73" name="mission">
+								{{club.mission}}</textarea>
+							</div>
+							<div class="form-group">
+								<label><b>Vision</b></label>
+								<textarea rows="4" cols="73" name="vision" form=" tarea">
+								{{club.vision}}</textarea>
+							</div>
+							<div class="form-group">
+								<label><b>Short description</b></label>
+								<textarea rows="4" cols="73" name="short" form=" tarea">
+								{{club.shortdesc}}</textarea>
+							</div>
+							<div class="form-group">
+								<label><b>Phone</b></label>
+								<input  class="form-control" type="text" name="phone"  value = {{club.phone}}>
+							</div>
+							<div class="form-group">
+								<label><b>Email</b></label>
+								<input  class="form-control" type="mail" name="mail"  value = {{club.mail}}>
+							</div>
+						</div>
+						<div class = "row">
+							<div class = "col-sm"></div>
+							<div class = "col-sm">
+								<input type="submit" class="btn btn-success btn-lg" name="sub_button" value="Update">
+							</div>
+							<div class = "col-sm"></div>
+					</form>
+				</div>
+				<br>
+				<br>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}

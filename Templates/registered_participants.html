@@ -1,2 +1,29 @@
-{%extends basehome.html%}
+{%extends "admin_base.html"%}
 {%block content%}
+<div class = 'container'>
+	{%for eventname, regmem in reg.items%}
+		<h3><b>{{eventname}}</b></h3>
+
+			<table class="table table-striped">
+				  <thead>
+				    <tr>
+				      <th scope="col">USN</th>
+				      <th scope="col">Name</th>
+				    </tr>
+				  </thead>
+				  {%for r in regmem%}
+
+						  <tbody>
+						    <tr>
+						      <td>{{r.details.usn}}</td>
+						      <td>{{r.details.fname}} {{r.details.lname}}</td>
+						    </tr>
+						  </tbody>
+					
+				{%endfor%}
+			</table>
+	
+	{%endfor%}
+</div>
+
+{%endblock%}

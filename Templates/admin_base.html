@@ -5,36 +5,35 @@
 	<title>Club Management</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{% static "CSS/basehome.css" %}">
+
+<style>
+.club-color {
+	color : #2876cf;
+}
+
+</style>
 </head>
 <body>
 
 
-	<form action = "" method = "POST">
-			{%csrf_token%}
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<ul class="navbar-nav">
-
-					<li class="nav-item active">
-						<button class="btn btn-link" role="link" type="submit" name="btn" value="Home">Home</button>
-					</li>
-					<li class="nav-item ">
-						<div class="btn-group">
-							<button type="button" class = "btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Registered Participants
-							</button>
-							<div class="dropdown-menu dropdown-menu-right">
-							{%for event in events%}
-								
-									<button class="dropdown-item" type="submit" name = "ddbtn" value ="{event.ename}" >{{event.ename}}</button>
-								
-							{%endfor%}
-							</div>
-						</div>
-						
-					</li>
-				</ul>
-			</nav>
-		</form>
+    <ul class="navbar-nav">
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'showclubs' %}">Clubs</a>
+	    </li>
+	  
+		    <li class="nav-item">
+		      <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href ="{% url 'logout' %}">Logout</a>
+		    </li>
+	   
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'adminlogin' %}">Manage</a>
+	    </li>
+  </ul>
+</nav>
 
 		{%block content%}{%endblock%}
 		<div class="container ">

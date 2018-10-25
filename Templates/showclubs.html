@@ -1,65 +1,91 @@
 {%load static%}
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Clubs</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static "CSS/home.css" %}">
-</head>
-<body>
-	
-	<form action = "/clubs/ " method = "POST">
-		{%csrf_token%}
+	<head>
+		<title>Clubs</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{% static "CSS/home.css" %}">
+	</head>
+	<body>
+		
+		<form action = "/clubs/ " method = "POST">
+			{%csrf_token%}
+			
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<ul class="navbar-nav">
-				   	<li class="nav-item active">
-				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="clubs">Clubs</button>
-       				 </li>
-       				 {% if nav == 1%}
+    <ul class="navbar-nav">
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'showclubs' %}">Clubs</a>
+	    </li>
+	    {%if  user.is_authenticated%}
+		    <li class="nav-item">
+		      <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href ="{% url 'logout' %}">Logout</a>
+		    </li>
+	    {%endif%}
+	    {%if mem == 1%}
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'adminlogin' %}">Manage</a>
+	    </li>
+	    {%endif%}
+	    {%if mem == 2%}
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'cadmin' %}">See Club request</a>
+	    </li>
+	    {%endif%}
 
-				    	<li class="nav-item active">
-				   	 		<button class="btn btn-link" role="link" type="submit" name="btn" value="profile">Profile</button>
-       				 	</li>
-					    <li class="nav-item active">
-					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="logout">Logout</button>
-	       				 </li>
-
-	       			{%else%}
-	       				<li class="nav-item active">
-				   	 		<button class="btn btn-link" role="link" type="submit" name="btn" value="SignIn">SignIn</button>
-       				 	</li>
-					    <li class="nav-item active">
-					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="SignUp">SignUp</button>
-	       				 </li>
-	       			{%endif%}
-	       			{%if mem == 1%}
-	       				<li class="nav-item active">
-					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Manage">Manage</button>
-	       				 </li>
-	       			{%endif%}
-	       			{%if mem == 2%}
-	       				<li class="nav-item active">
-					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="Manageclubs">View Club requests</button>
-	       				 </li>
-	       			{%endif%}
-
-				 </ul>
-			</nav>
-			{%if nav == 0%}
-				<h4>Want to create New Club?, Want to know what are the clubs present in your college?, Want to join club in your college of interest? Here is the answer. What are you wating for?</h4>
-				<a href="{% url 'signin'%}" class="btn btn-primary" role="button">SignIn</a>
-
-			{%endif%}
-	
-		<h1>Clubs List</h1>
-
-		{%for club in clubs%}
-			<a href="{% url 'club_page1' club_name=club.cname %}">{{club.cname}}</a><br><br>
-		{%endfor%}
-		<br>
-		{%if nav == 1%}
-			<input type="submit" name="btn" value = "Want To Create A Club?">
+	    {%if not user.is_authenticated%}
+		    <li class="nav-item">
+		      <a class="nav-link" href="{% url 'signin' %}">SignIn</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+		    </li>
 		{%endif%}
-	</form>
-</body>
-</html>
+  </ul>
+</nav>
+			<div class = "container">
+				{%if not user.is_authenticated%}
+				<div class="container ">
+					
+					<div class="row justify-content-center">
+						<div class="col-md-6">
+							<div class="cedit">
+								
+								<h5>Want to create New Club?, Want to know what are the clubs present in your college?, Want to join club in your college of interest? Here is the answer. What are you wating for?</h5><br>
+								<a href="{% url 'signin'%}" class="btn btn-primary" role="button">SignIn</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				{%endif%}
+				<div class = "container">
+					<h1>Clubs List</h1>
+					
+					{%for club in clubs%}
+					<h2><a href="{% url 'club_page1' club_name=club.cname %}">{{club.cname}}</a><br><br></h2>
+					{%endfor%}
+					<br>
+					{%if  user.is_authenticated%}
+					<div class = "row" >
+						<div class = "col-md-4">
+						</div>
+						<div class = "col-md-4">
+							<a class="btn btn-info" href="{% url 'cform' %}">Edit Club Details</a><br><br>
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div>
+					{%endif%}
+
+
+	
+					
+					
+					
+				</div>
+			</form>
+		</body>
+	</html>

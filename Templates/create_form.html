@@ -6,27 +6,58 @@
 	<form action = "/clubs/ " method = "POST">
 		{%csrf_token%}
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<ul class="navbar-nav">
-				   	<li class="nav-item active">
-				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="clubs">Clubs</button>
-       				 </li>
-				    	<li class="nav-item active">
-				   	 		<button class="btn btn-link" role="link" type="submit" name="btn" value="profile">Profile</button>
-       				 	</li>
-					    <li class="nav-item active">
-					   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="logout">Logout</button>
-	       				 </li>
-				 </ul>
-			</nav>
+      <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'showclubs' %}">Clubs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{%url 'profile' %}">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href ="{% url 'logout' %}">Logout</a>
+    </li>
+  </ul>
+</nav>
 	</form>
 {%endblock%}
 {%block content%}
 	<form action = "" method = "POST">
 		{%csrf_token%}
-		Club Name <input type="text" name="cname"><br>
-		Motto <input type="text" name="motto"><br>
-		USN <input type="text" name="usn"><br>
-		<input type="submit" value="submit" name = 'sub_btn'>
+		<div class = "row">
+          <div class = "col-md -1"></div>
+          <div class = "col-md-10">
+            <h4><b>Club Details</b></h4>
+          </div>
+        </div>
+
+		<div class="form-group">
+          <label>Club Name</label>
+          <input type="text" class="form-control" name = 'cname' aria-describedby="emailHelp" placeholder="Club Name">
+        </div>
+        <div class="form-group">
+          <label>Mission</label>
+          <input type="text" class="form-control" name="mission" placeholder="Mission">
+        </div>
+        <div class="form-group">
+          <label>Vision</label>
+          <input type="text" class="form-control" name = 'vision' aria-describedby="emailHelp" placeholder="Vision">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" name = 'description' aria-describedby="emailHelp" placeholder="Enter user name">
+        </div>
+        <div class="form-group">
+          <label>usn</label>
+          <input type="text" class="form-control" name = 'usn' aria-describedby="emailHelp" placeholder="Enter your usn">
+        </div>
+        <div class = "row">
+          <div class = 'col-sm'></div>
+          <div class = 'col-sm'>
+            <button type="submit" class="btn btn-primary">Submit</button><br><br>
+          </div>
+          <div class = 'col-sm'></div>
+   		</div>
+   		Make Sure you have a Complete profile,else update it <a href="{% url 'profile' %}">Profile</a>
 	</form>
 {%endblock%}
 

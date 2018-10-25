@@ -1,0 +1,50 @@
+{%extends 'admin_base.html'%}
+{%block content%}
+{%if re == 1 %}
+<div class = 'container'>
+  
+<form action = "" method = "POST">
+    {%csrf_token%}
+    
+      {%for r in req%}
+      <div class = 'card'>
+        <div class = 'row'>
+              <div class = 'col-md-3'>
+                {{r.member.usn}}
+              </div>
+              <div class = 'col-md-3'>
+                {{r.member.fname}} {{r.member.lname}}
+              </div>
+              <div class = 'col-md-6'>
+                {{r.reason}}
+              </div>
+        </div>
+        <br><br><br>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <button type="submit" class="btn btn-success btn-sm" name = "add" value ="{{r.member.usn}}">Accept</button>
+              </div>
+              <div class = 'col-sm'>
+                <button type="submit" class="btn btn-danger btn-sm" name = "reject" value ="{{r.member.usn}}">Reject</button>
+              </div>
+        </div>
+        <div class = "row">
+        </div>
+        <div class = "row">
+        </div>
+    
+
+    {%endfor%}  
+    </div>
+
+
+</div>
+</form>
+
+{%else%}
+  <div class="alert alert-success">
+  <strong> No Join Requests</strong> 
+</div>
+{%endif%}
+
+{%endblock%}

@@ -8,16 +8,104 @@
 </head>
 <body>
 	
-	<form action = "/clubs/ " method = "POST">
+	<form action = "/collegeadmin/ " method = "POST">
 		{%csrf_token%}
+			
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<ul class="navbar-nav">
-				   	<li class="nav-item active">
-				   	 	<button class="btn btn-link" role="link" type="submit" name="btn" value="home">Home</button>
-       				 </li>
-					   
-				</ul>
-			</nav>
+    <ul class="navbar-nav">
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'showclubs' %}">Clubs</a>
+	    </li>
+	  
+		    <li class="nav-item">
+		      <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href ="{% url 'logout' %}">Logout</a>
+		    </li>
+	   
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'cadmin' %}">See Club Requests</a>
+	    </li>
+  </ul>
+</nav>
+
+{%if re == 1 %}
+<div class = 'container'>
+  
+<form action = "" method = "POST">
+    {%csrf_token%}
+    
+      {%for r in cr%}
+      <div class = 'card'>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Club Name</b>  {{r.club_name}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Description</b>  {{r.desc}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Sem</b>  {{r.mission}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Sem</b>  {{r.vision}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>USN</b>  {{r.profile.usn}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Student Name</b>  {{r.profile.fname}} {{r.profile.lname}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Branch</b>  {{r.profile.branch}}
+              </div>
+        </div>
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <b>Sem</b>  {{r.profile.sem}}
+              </div>
+        </div>
+   
+        <div class = 'row'>
+              <div class = 'col-sm'>
+                <button type="submit" class="btn btn-success btn-sm" name = "add" value ="{{r.profile.usn}}">Accept</button>
+              </div>
+              <div class = 'col-sm'>
+                <button type="submit" class="btn btn-danger btn-sm" name = "reject" value ="{{r.profile.usn}}">Reject</button>
+              </div>
+        </div>
+        <div class = "row">
+        </div>
+        <div class = "row">
+        </div>
+
+    {%endfor%}  
+    </div>
+
+
+</div>
+</form>
+
+{%else%}
+  <div class="alert alert-success">
+  <strong> No Join Requests</strong> 
+</div>
+{%endif%}
+
+
 		
 	</form>
 </body>

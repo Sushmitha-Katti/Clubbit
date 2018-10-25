@@ -1,10 +1,37 @@
 {%extends 'admin_base.html'%}
 {%block content%}
-	<form action = "" method = "POST">
-		{%csrf_token%}
-			<button  class="btn btn-info" type = 'submit' value = "Add Members" name = 'btn'>Add Members</button>
-			<button  class="btn btn-info" type = 'submit' name = 'btn' value = 'Add Events'>Add Events</button>
-			<button  class="btn btn-info" type = 'submit' name = 'btn', value = 'Add Images'>Add Images</button>
-			
-		</form>
-{%endblock%}
+<form action = "" method = "POST">
+	{%csrf_token%}
+	<div class="container">
+		<div class="row justify-content-start">
+			<div class="col-sm">
+				<div class="card text-center" >
+					<div class="card-body">
+
+						
+						     
+						    
+						      <a class="btn btn-info" href="{% url 'edit' club_name=club.cname %}">Edit Club Details</a><br><br>
+						    
+						    
+						      <a class="btn btn-info" href="{% url 'adde' club_name=club.cname %} ">Add Events</a><br><br>
+						   
+						    
+						      <a class="btn btn-info" href ="{% url 'addimg' club_name=club.cname %}">Add Images</a><br><br>
+						   
+						    
+						      <a class="btn btn-info" href ="{% url 'joinr' club_name=club.cname %}">Join Requests</a><br><br>
+						    
+						  
+						      <a class="btn btn-info" href ="{% url 'regmem' club_name=club.cname %}">Registered Participants</a><br><br>	
+						      <a class="btn btn-info" href ="{% url 'sel' club_name=club.cname %}">Select events to be in fron page</a><br><br>	
+						      <a class="btn btn-info" href ="{% url 'add_admin' club_name=club.cname %}">Add Admin</a><br><br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+	</form>
+	{%endblock%}

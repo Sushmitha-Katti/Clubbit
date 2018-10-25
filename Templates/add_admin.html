@@ -1,0 +1,12 @@
+{%extends 'admin_base.html'%}
+{%block form%}
+<form action = "" method = "POST">
+{%csrf_token%}
+	<select name = "usn">
+						{%for m in member%}
+			  		    <option value="{{m.profile.usn}}">{{m.profile.usn}}</option>
+						{%endfor%}	
+					  </select>
+	<button type="submit" class="btn btn-primary" name="btn" value = "Save" >Add</button>
+</form>
+{%endblock%}

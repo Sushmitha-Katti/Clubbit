@@ -1,0 +1,47 @@
+{%extends 'admin_base.html'%}
+{%block form%}
+<div class="card">
+  	<div class="card-body">
+		<form action = "" method = "POST" enctype="multipart/form-data">
+				{%csrf_token%}
+				<b>Add Event</b>
+				<br>
+				<br>
+				<div class="form-group">
+		          <label >Event Name</label>
+		          <input type="text" class="form-control" name="event_name" placeholder = "Eventname">
+		        </div>
+		        <div class="form-group">
+		          <label>Description</label>
+		          <input type="text" class="form-control" name="desc" placeholder="description">
+		        </div>
+		        <div class="form-group">
+		          <label>Amount</label>
+		          <input  class="form-control" type="number" name="fees" placeholder = "Amount">
+		        </div>
+		        <div class="form-group">
+		          <label>Date</label>
+		          <input  class="form-control" type="Date" name="date" placeholder = "Date">
+		        </div>
+		       	<div class="form-group">
+		          <label>Image</label>
+		          <input class="form-control" type="file" name="image">
+		   
+		          
+					
+				</select>
+		        </div>
+		        <div class = 'row'>
+		        	<div class = "col-sm"></div>
+		        	<div class = "col-sm">
+		        		<button type="submit" class="btn btn-success" name="sub_button" value = "Add">Add</button>
+		        	</div>
+		        	<div class = "col-sm">
+		       </div>
+		   
+		     
+		    </form>
+
+		</div>
+	</div>
+{%endblock%}
