@@ -6,27 +6,27 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
 	user = models.OneToOneField(User,  on_delete=models.CASCADE)
-	fname = models.CharField(max_length = 30, blank='True' )
-	lname = models.CharField(max_length = 30, blank = 'True')
-	phone = models.CharField(max_length = 100, blank = 'True')
+	fname = models.CharField(max_length = 30, null='True' )
+	lname = models.CharField(max_length = 30, null = 'True')
+	phone = models.CharField(max_length = 100, null = 'True')
 	usn = models.CharField(max_length = 100 )
-	college = models.CharField(max_length = 100, blank = 'True')
-	branch = models.CharField(max_length = 30 ,blank = 'True')
-	sem =  models.IntegerField(blank = 'True')
+	college = models.CharField(max_length = 100, null = 'True')
+	branch = models.CharField(max_length = 30 ,null = 'True')
+	sem =  models.IntegerField(null = 'True')
 	
 	def __str__(self):
-		return self.fname
+		return self.usn
 
 class Club(models.Model):
 	cname = models.CharField(max_length = 100)
-	motto = models.CharField(max_length = 500)
-	image = models.ImageField(upload_to = 'static/club_image')
-	about = models.TextField()
-	mission = models.TextField(blank = 'True')
-	vision = models.TextField(blank = 'True')
+	motto = models.CharField(max_length = 500 ,null = True)
+	image = models.ImageField(upload_to = 'static/club_image', null = True)
+	about = models.TextField(null = True)
+	mission = models.TextField(null = 'True')
+	vision = models.TextField(null = 'True')
 	shortdesc = models.TextField(null = 'True')
-	phone = models.CharField(max_length = 100, null = 'True')
-	mail = models.CharField(max_length = 100, null = 'True')
+	phone = models.CharField(max_length = 100, null = True)
+	mail = models.CharField(max_length = 100, null = True)
 
 
 	def __str__(self):
@@ -84,14 +84,17 @@ class Registered_members(models.Model):
 class Request(models.Model):
 	member = models.ForeignKey(Profile, on_delete = models.CASCADE)
 	club = models.ForeignKey(Club, on_delete = models.CASCADE,  null=True )
+	reason = models.TextField(null = True)
 
 	def __str__(self):
 		return self.member.fname
 
 class Club_request(models.Model):
 	club_name = models.CharField(max_length = 30)
-	desc  = models.CharField(max_length = 100)
+	desc  = models.CharField(max_length = 100, null = True)
 	profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
+	mission = models.TextField(blank = 'True')
+	vision = models.TextField(blank = 'True')
 
 	def __str__(self):
 		return self.club_name
