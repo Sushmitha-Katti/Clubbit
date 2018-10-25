@@ -23,13 +23,23 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('clubs/', show_clubs, name = 'showclubs'),
     path('club/<str:club_name>/', club_page, name = 'club_page1'),
-    path('adminlogin/', admin_login),
+    path('adminlogin/', admin_login , name = "adminlogin"),
     path('see_response/',see_response),  
     path('signin/', signin, name = 'signin'),
     path('signup/', signup, name = 'signup'),
     path('profile/', profile, name = 'profile'),
     path('', home, name = 'name'),
     path ('collegeadmin/', cadmin, name = 'cadmin'),
+    path('logout/', signout, name = 'logout'),
+    path('add_events/<str:club_name>/',add_events, name = 'adde'),
+    path('edit_club/<str:club_name>/',edit_club, name= "edit"),
+    path('add_image/<str:club_name>/', addimg, name= "addimg"),
+    path('join_requests/<str:club_name>/', joinr, name= "joinr"),
+    path("Registered_member/<str:club_name>/",regmem, name = "regmem"),
+    path("sel/<str:club_name>/",sel, name = "sel"),
+    path("add_admin/<str:club_name>/", add_admin, name = "add_admin"),
+    path('club_form/', cform, name = 'cform')
+
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
