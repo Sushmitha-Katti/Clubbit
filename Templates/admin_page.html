@@ -1,37 +1,66 @@
-{%extends 'admin_base.html'%}
+{%extends 'base.html'%}
+{% load static %}
+
+
+{% block meta %}
+  <link rel="stylesheet" type="text/css" href="{% static "CSS/basehome.css" %}">
+
+
+{%endblock%}
+{%block nav%}
+
+<ul class="navbar-nav mr-auto" style = "float : right;">
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'showclubs' %}" >Clubs</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href ="{% url 'logout' %}">Logout</a>
+              </li>
+     
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'adminlogin' %}">Manage</a>
+              </li>
+            </ul>
+{%endblock%}
 {%block content%}
 <form action = "" method = "POST">
-	{%csrf_token%}
-	<div class="container">
-		<div class="row justify-content-start">
-			<div class="col-sm">
-				<div class="card text-center" >
-					<div class="card-body">
+  {%csrf_token%}
+  <div class="container" style="margin-top:50px">
+    <div class="row justify-content-start">
+      <div class="col-sm">
+        <div class="card text-center" >
+          <div class="card-body">
 
-						
-						     
-						    
-						      <a class="btn btn-info" href="{% url 'edit' club_name=club.cname %}">Edit Club Details</a><br><br>
-						    
-						    
-						      <a class="btn btn-info" href="{% url 'adde' club_name=club.cname %} ">Add Events</a><br><br>
-						   
-						    
-						      <a class="btn btn-info" href ="{% url 'addimg' club_name=club.cname %}">Add Images</a><br><br>
-						   
-						    
-						      <a class="btn btn-info" href ="{% url 'joinr' club_name=club.cname %}">Join Requests</a><br><br>
-						    
-						  
-						      <a class="btn btn-info" href ="{% url 'regmem' club_name=club.cname %}">Registered Participants</a><br><br>	
-						      <a class="btn btn-info" href ="{% url 'sel' club_name=club.cname %}">Select events to be in fron page</a><br><br>	
-						      <a class="btn btn-info" href ="{% url 'add_admin' club_name=club.cname %}">Add Admin</a><br><br>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            
+                 
+                
+                  <a class="btn btn-info" href="{% url 'edit' club_name=club.cname %}">Edit Club Details</a><br><br>
+                
+                
+                  <a class="btn btn-info" href="{% url 'adde' club_name=club.cname %} ">Add Events</a><br><br>
+               
+                
+                  <a class="btn btn-info" href ="{% url 'addimg' club_name=club.cname %}">Add Images</a><br><br>
+               
+                
+                  <a class="btn btn-info" href ="{% url 'joinr' club_name=club.cname %}">Join Requests</a><br><br>
+                
+              
+                  <a class="btn btn-info" href ="{% url 'regmem' club_name=club.cname %}">Registered Participants</a><br><br> 
+                  <a class="btn btn-info" href ="{% url 'sel' club_name=club.cname %}">Select events to be in fron page</a><br><br> 
+                  <a class="btn btn-info" href ="{% url 'add_admin' club_name=club.cname %}">Add Admin</a><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-		
-	</form>
-	{%endblock%}
+    
+  </form>
+
+{%endblock%}

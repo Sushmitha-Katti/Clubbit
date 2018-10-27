@@ -1,9 +1,9 @@
-{%extends 'admin_base.html'%}
+{%extends 'admin_page.html'%}
 {%block content%}
-<div class = row>
+<div class = row style="margin-top:50px">
 	<div class = col-sm>
 		<div class = 'container'>
-			<div class="card">
+			<div class="card ">
 				<div class="card-body">
 					<form action = "" method = "POST" enctype="multipart/form-data" id = 'tarea'>
 						{%csrf_token%}
@@ -21,44 +21,42 @@
 							</div>
 							<div class="form-group">
 								<label><b>Image</b></label>
-								<input class="form-control" type="file" name="image" value = "{{club.image}}">
+								<input  type="file" name="image" value = "{{club.image}}">
 							</div>
 							<div class="form-group">
-								<label><b>About</b></label>
-								<textarea rows="4" cols="73" name="about" value="{{club.about}}">{{club.about}}
+								<label><b>About</b></label><br>
+								<textarea class="form-control" rows="4" cols="115" name="about" value="{{club.about}}">{{club.about}}
 								</textarea>
 							</div>
 							
 							<div class="form-group">
-								<label><b>Mission</b></label>
-								<textarea rows="4" cols="73" name="mission">
+								<label><b>Mission</b></label><br>
+								<textarea class="form-control" rows="4" cols="115" name="mission">
 								{{club.mission}}</textarea>
 							</div>
 							<div class="form-group">
-								<label><b>Vision</b></label>
-								<textarea rows="4" cols="73" name="vision" form=" tarea">
+								<label><b>Vision</b></label><br>
+								<textarea  class="form-control"rows="4" cols="115" name="vision" form=" tarea">
 								{{club.vision}}</textarea>
 							</div>
 							<div class="form-group">
-								<label><b>Short description</b></label>
-								<textarea rows="4" cols="73" name="short" form=" tarea">
+								<label><b>Short description</b></label><br>
+								<textarea class="form-control" rows="4" cols="115" name="short" form=" tarea">
 								{{club.shortdesc}}</textarea>
 							</div>
 							<div class="form-group">
 								<label><b>Phone</b></label>
-								<input  class="form-control" type="text" name="phone"  value = {{club.phone}}>
+								<input  class="form-control" class="form-control" type="text" name="phone"  value = {{club.phone}}>
 							</div>
 							<div class="form-group">
 								<label><b>Email</b></label>
-								<input  class="form-control" type="mail" name="mail"  value = {{club.mail}}>
+								<input class="form-control"  class="form-control" type="mail" name="mail"  value = {{club.mail}}>
 							</div>
 						</div>
-						<div class = "row">
-							<div class = "col-sm"></div>
-							<div class = "col-sm">
-								<input type="submit" class="btn btn-success btn-lg" name="sub_button" value="Update">
+						<div style="text-align:center;">
+							
+								<input type="submit" class="btn btn-success btn-lg" name="sub_button" value = "Update" >
 							</div>
-							<div class = "col-sm"></div>
 					</form>
 				</div>
 				<br>
