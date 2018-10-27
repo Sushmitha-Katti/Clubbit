@@ -11,7 +11,7 @@ def home(request):
 
 def signout(request):
 	logout(request)
-	return redirect("/signin/")
+	return redirect("/")
 
 def show_clubs(request):
 	print(request.user)
