@@ -1,7 +1,10 @@
 
 body{
 	
-	 font-family: 'Lobster', cursive;
+	font-family: 'Nanum Gothic', sans-serif;
+	background: linear-gradient(23deg, rgba(234,237,244,1) 0%, rgba(247,236,246,1) 100%);
+
+
 }
 
 .cname{
@@ -25,3 +28,48 @@ body{
 	text-align:center;
 	padding :70px;
 }
+.coloredit {
+	background:linear-gradient(45deg, #f09b8e,#fff);
+}
+
+
+.cardhover {
+text-decoration: none;
+ }
+
+ .cardhover:hover > div {
+	transform:scale(1.01);
+	text-decoration : none;
+	box-shadow: 3px 3px 5px  #aaa ;
+
+}
+
+
+<style>
+		body, html {
+		height: 100%;
+		margin: 0;
+		}
+		.clubbg{
+		
+		height: 70%;
+		width:100%;
+		
+		/* Center and scale the image nicely */
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding-bottom: 3%;
+		}
+		.ebg{
+		
+		
+		width:100%;
+		
+		/* Center and scale the image nicely */
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+		}
+
