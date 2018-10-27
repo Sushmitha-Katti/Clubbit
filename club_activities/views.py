@@ -4,7 +4,10 @@ from django.contrib.auth import authenticate, login ,logout
 from datetime import date
 
 def home(request):
-	return redirect(f"/clubs/")
+	 if not request.user.is_authenticated:
+	 	return render(request, "Home.html")
+	 else:
+	 	return redirect("/clubs/")
 
 def signout(request):
 	logout(request)
@@ -34,8 +37,28 @@ def show_clubs(request):
 			pass
 
 	clubs = Club.objects.all()
+	club = {}
+	a = []
+	for i, j in enumerate(clubs):
+		print(i)
+		if((i)%3 != 0 or i ==0):
+			a.append (j) 
+			print(j)
 
-	return render(request, "showclubs.html", {'clubs': clubs,  'mem' : mem}) 
+		else:
+			
+			print(j)
+			club[i]=a
+			a = []
+			a.append(j)
+	club[i]=a
+
+
+	print(club)
+
+
+
+	return render(request, "showclubs.html", {'clubs': clubs,  'mem' : mem, 'club':club}) 
 
 
 
@@ -107,22 +130,6 @@ def admin_login(request):
 	
 	events = Event.objects.filter(club_name = member.club)
 	req = Request.objects.filter(club = member.club)
-	
-			
-
-
-		
-		
-
-
-
-			
-
-		
-
-		
-
-
 	profile = Profile.objects.get(user = request.user)
 	member = Member.objects.get(profile = profile)
 	req = Request.objects.filter(club = member.club)
@@ -290,7 +297,9 @@ def edit_club(request,club_name):
 			club = Club.objects.get(cname = member.club)
 			club.cname = request.POST.get('cname')
 			club.motto = request.POST.get('motto')
-			club.image = request.FILES.get('image')
+			image = request.FILES.get('image')
+			if not image is None:
+				club.image = image
 			club.about = request.POST.get('about')
 			club.mission = request.POST.get('mission')
 			club.vission = request.POST.get('vision')
