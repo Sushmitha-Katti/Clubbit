@@ -37,24 +37,27 @@ def show_clubs(request):
 			pass
 
 	clubs = Club.objects.all()
-	club = {}
-	a = []
-	for i, j in enumerate(clubs):
-		print(i)
-		if((i)%3 != 0 or i ==0):
-			a.append (j) 
-			print(j)
+	if clubs.count()>0:
+		club = {}
+		a = []
+		for i, j in enumerate(clubs):
+			print(i)
+			if((i)%3 != 0 or i ==0):
+				a.append (j) 
+				print(j)
 
-		else:
-			
-			print(j)
-			club[i]=a
-			a = []
-			a.append(j)
-	club[i]=a
+			else:
+				
+				print(j)
+				club[i]=a
+				a = []
+				a.append(j)
+		club[i]=a
+	else:
+		club = Club.objects.all()
 
 
-	print(club)
+	
 
 
 
