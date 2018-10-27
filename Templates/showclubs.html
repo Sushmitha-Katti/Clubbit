@@ -37,7 +37,7 @@
 		</ul>
 	{% endblock %}
 	{%block content %}
-	<h1 style = "text-allign : center"><b>Discover Clubs</b></h1>
+	<h1 style = "text-align:center; color:#A52A2A; margin-top:20px; font-family: 'Anton', sans-serif"><b>Discover Clubs In Your College</b></h1>
 	
 			{%for i ,club in club.items%}
 					<div class = "row" style="margin-top:50px">
@@ -47,9 +47,9 @@
 						<div class = "col-md-4">
 							<a class="cardhover" href="{% url 'club_page1' club_name=c.cname %}" style="text-decoration:none;">
 								<div style = "width:300px; heigth:400px"class="card mb-3">
-									<img class="card-img-top" src="/{{c.image}}"  alt="Card image cap">
+									<img style = " heigth:100px;"class="card-img-top" src="/{{c.image}}"  alt="Card image cap">
 									<div class="card-body">
-										<h5 class="card-title">{{c.cname}}</h5>
+										<h4 class="card-title" style = "color:black";>{{c.cname}}</h4>
 										<p class="card-text">{{c.shortdesc}}</p>
 										
 									</div>
@@ -69,7 +69,7 @@
 						<div class = "col-md-4">
 						</div>
 						<div class = "col-md-4">
-							<a style = "width:300px; heigth:400px"class="btn btn-info" href="{% url 'cform' %}">Want To Create New Club</a><br><br>
+							<a style = "width:300px; heigth:400px; background-image: linear-gradient( 109.6deg,  rgba(33,99,255,1) 11.2%, rgba(0,10,139,1) 100.2% ); margin-top:20px"class="btn btn-info" href="{% url 'cform' %} ">Want To Create New Club</a><br><br>
 						</div>
 						<div class="col-md-4">
 						</div>

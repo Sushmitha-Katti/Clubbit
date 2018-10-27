@@ -1,16 +1,19 @@
 
-{%extends 'base.html'%}
+{%extends 'admin_base.html'%}
 {%block form%}
-
-<div class="card">
+<div class = row style="margin-top:50px">
+	<div class = "col-md-5 offset-md-4">
+		<div class = 'container'>
+		
+<div class="card" style="margin-top:40px;">
   	<div class="card-body">
 		<form action = "" method = "POST" enctype="multipart/form-data">
 				{%csrf_token%}
-				<b>Add Event</b>
-				<br>
-				<br>
+				<h4><b>Add Event</b></h4>
+				
+				
 				<div class="form-group">
-		          <label >Event Name</label>
+		          <label style = " margin-top:20px;" >Event Name</label>
 		          <input type="text" class="form-control" name="event_name" placeholder = "Eventname">
 		        </div>
 		        <div class="form-group">
@@ -27,28 +30,32 @@
 		        </div>
 		       	<div class="form-group">
 		          <label>Image</label>
-		          <input class="form-control" type="file" name="image">
+		          <input  type="file" name="image">
 		   
 		          
 					
 				</select>
 		        </div>
 		        <div class = 'row'>
-		        	<div class = "col-sm"></div>
-		        	<div class = "col-sm">
-		        		<button type="submit" class="btn btn-success" name="sub_button" value = "Add">Add</button>
+		        	<div class = "col-md-4"></div>
+		        	<div class = "col-md-4 ">
+		        		<button type="submit" class="btn btn-success btn-block" name="sub_button" value = "Add">Add</button>
 		        	</div>
-		        	<div class = "col-sm">
+		        	<div class = "col-md-4">
 		       </div>
 		   
 		     
-		    </form>
-
-		</div>
+		    </div>
+		</form>
 	</div>
+</div>
+</div>
+</div>
+</div>
+
  {%endblock%}
 
-{# <!DOCTYPE html>
+<!--> <!DOCTYPE html>
 <html>
 <head>
 	<title>Add Events</title>
@@ -72,4 +79,4 @@
 </form>
 
 </body>
-</html> #}
+</html> -->

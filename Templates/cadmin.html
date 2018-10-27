@@ -36,73 +36,82 @@
   
 <form action = "" method = "POST">
     {%csrf_token%}
-    
+     <div class = 'row' style="margin-top:90px;">
+      <div class = 'col-md-9 offset-md-2'>
+
+    <div class = 'card'>
+      <div style = " text-align : center;"><h2>Requests</h2></div>
+
       {%for r in cr%}
-      <div class = 'card'>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Club Name</b>  {{r.club_name}}
+
+       <div class = "container" style="margin-top:20px;">
+            <div >
+                <b>USN : </b>  {{r.profile.usn}}
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Description</b>  {{r.desc}}
+       
+        
+              <div >
+                <b>Student Name : </b>  {{r.profile.fname}} {{r.profile.lname}}
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Sem</b>  {{r.mission}}
+    
+        
+              <div >
+                <b>Branch : </b>  {{r.profile.branch}}
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Sem</b>  {{r.vision}}
+     
+              <div >
+                <b>Sem : </b>  {{r.profile.sem}}
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>USN</b>  {{r.profile.usn}}
+    
+      
+     
+              <div>
+                <h2 style = "text-align: center; margin-bottom:20px; color:red;">{{r.club_name}}</h2>
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Student Name</b>  {{r.profile.fname}} {{r.profile.lname}}
+              
+     
+       
+              <div>
+                <h6><b>{{r.desc}}</b></h6>
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Branch</b>  {{r.profile.branch}}
+      
+      
+              <div style="margin-top:20px;" >
+                <b>Mission : </b>  {{r.mission}}
               </div>
-        </div>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <b>Sem</b>  {{r.profile.sem}}
-              </div>
-        </div>
+      
    
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <button type="submit" class="btn btn-success btn-sm" name = "add" value ="{{r.profile.usn}}">Accept</button>
+              <div  style="margin-top:20px;">
+                <b>Vision : </b>  {{r.vision}}
               </div>
-              <div class = 'col-sm'>
-                <button type="submit" class="btn btn-danger btn-sm" name = "reject" value ="{{r.profile.usn}}">Reject</button>
+        
+        
+              
+   <div class = 'row'>     
+    <div class = 'col-md-4'></div>
+             <div class = 'col-md-4' style="margin-top:20px;margin-bottom:20px;">
+                <button type="submit" name = "add" value ="{{r.profile.usn}}">✔️</button>
+              </div>
+              <div class = 'col-md-4' style="margin-top:20px;margin-bottom:20px;">
+                <button type="submit"  name = "reject" value ="{{r.profile.usn}}">✖️ </button>
               </div>
         </div>
-        <div class = "row">
-        </div>
-        <div class = "row">
-        </div>
+       </div>
 
     {%endfor%}  
     </div>
-
+</div>
 
 </div>
 </form>
 
 {%else%}
-  <div class="alert alert-success">
-  <strong> No Join Requests</strong> 
+ <div class = "row">
+    <div class = "col-md-6 offset-md-3">
+        <div style="margin-top:70px;" class="alert alert-alert alert-danger">
+            <strong> No Join Requests</strong> 
+        </div>
+    </div>
 </div>
 {%endif%}
 

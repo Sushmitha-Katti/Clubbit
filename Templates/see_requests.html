@@ -5,46 +5,59 @@
   
 <form action = "" method = "POST">
     {%csrf_token%}
+    <div class = 'row' style="margin-top:90px;">
+      <div class = 'col-md-6 offset-md-3'>
+
+
+    <div class = "card">
+        <div style = " text-align : center;"><h2>Requests</h2></div>
+        
     
       {%for r in req%}
-      <div class = 'card'>
-        <div class = 'row'>
-              <div class = 'col-md-3'>
-                {{r.member.usn}}
-              </div>
-              <div class = 'col-md-3'>
-                {{r.member.fname}} {{r.member.lname}}
-              </div>
-              <div class = 'col-md-6'>
-                {{r.reason}}
-              </div>
-        </div>
-        <br><br><br>
-        <div class = 'row'>
-              <div class = 'col-sm'>
-                <button type="submit" class="btn btn-success btn-sm" name = "add" value ="{{r.member.usn}}">Accept</button>
-              </div>
-              <div class = 'col-sm'>
-                <button type="submit" class="btn btn-danger btn-sm" name = "reject" value ="{{r.member.usn}}">Reject</button>
-              </div>
-        </div>
-        <div class = "row">
-        </div>
-        <div class = "row">
-        </div>
+            <div class = "container" style="margin-top:20px;">
+        
+             
+                <div><b>USN   : </b>{{r.member.usn}}</div>   
+                <div ><b>Name : </b>{{r.member.fname}} {{r.member.lname}}</div>
+                <div ><b>Reason : </b>{{r.reason}}</div>
+                <div class = 'row'>
+                    <div class = 'col-md-4'></div>
+                    <div class = 'col-md-4' style="margin-top:20px;margin-bottom:20px;">
+                        <button type="submit"   name = "add" value ="{{r.member.usn}}">✔️</button>
+                    </div>
+                    <div class = 'col-md-4' style="margin-top:20px;margin-bottom:20px;">
+                        
+                        <button type="submit"  name = "reject" value ="{{r.member.usn}}">✖️</button>
+                    </div>
+                </div>
+            </div>
+
+
+      {%endfor%}  
+
+
+    </div>
+  </div>
+</div>
+
+            
+       
+       
+       
     
 
-    {%endfor%}  
-    </div>
-
-
-</div>
+ 
 </form>
 
 {%else%}
-  <div class="alert alert-success">
-  <strong> No Join Requests</strong> 
-</div>
+  <div class = "row">
+    <div class = "col-md-6 offset-md-3">
+      <div style="margin-top:70px;" class="alert alert-alert alert-danger" >
+        <h3 ><strong> No Join Requests</strong></h3>
+      </div>
+    </div>
+  </div>
+
 {%endif%}
 
 {%endblock%}

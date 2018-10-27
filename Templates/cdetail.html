@@ -1,14 +1,13 @@
 {%extends 'admin_page.html'%}
 {%block content%}
 <div class = row style="margin-top:50px">
-	<div class = col-sm>
+	<div class = "col-md-6 offset-md-3">
 		<div class = 'container'>
 			<div class="card ">
 				<div class="card-body">
 					<form action = "" method = "POST" enctype="multipart/form-data" id = 'tarea'>
 						{%csrf_token%}
 						<h3><b>Update club details</b></h3>
-						<br>
 						<br>
 						<div class ="club-color">
 							<div class="form-group">
@@ -25,23 +24,23 @@
 							</div>
 							<div class="form-group">
 								<label><b>About</b></label><br>
-								<textarea class="form-control" rows="4" cols="115" name="about" value="{{club.about}}">{{club.about}}
+								<textarea class="form-control" rows="1" cols="115" name="about" value="{{club.about}}">{{club.about}}
 								</textarea>
 							</div>
 							
 							<div class="form-group">
 								<label><b>Mission</b></label><br>
-								<textarea class="form-control" rows="4" cols="115" name="mission">
+								<textarea class="form-control" rows="1" cols="115" name="mission">
 								{{club.mission}}</textarea>
 							</div>
 							<div class="form-group">
 								<label><b>Vision</b></label><br>
-								<textarea  class="form-control"rows="4" cols="115" name="vision" form=" tarea">
+								<textarea  class="form-control"rows="1" cols="115" name="vision" form=" tarea">
 								{{club.vision}}</textarea>
 							</div>
 							<div class="form-group">
 								<label><b>Short description</b></label><br>
-								<textarea class="form-control" rows="4" cols="115" name="short" form=" tarea">
+								<textarea class="form-control" rows="1" cols="115" name="short" form=" tarea">
 								{{club.shortdesc}}</textarea>
 							</div>
 							<div class="form-group">
@@ -56,7 +55,7 @@
 						<div style="text-align:center;">
 							
 								<input type="submit" class="btn btn-success btn-lg" name="sub_button" value = "Update" >
-							</div>
+						</div>
 					</form>
 				</div>
 				<br>
