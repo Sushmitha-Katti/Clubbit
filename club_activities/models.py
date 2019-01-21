@@ -20,7 +20,7 @@ class Profile(models.Model):
 class Club(models.Model):
 	cname = models.CharField(max_length = 100)
 	motto = models.CharField(max_length = 500 ,null = True)
-	image = models.ImageField(upload_to = 'static/club_image', null = True)
+	image = models.ImageField(upload_to = 'club_image', null = True)
 	about = models.TextField(null = True)
 	mission = models.TextField(null = 'True')
 	vision = models.TextField(null = 'True')
@@ -39,7 +39,7 @@ class Event(models.Model):
 	ename = models.CharField(max_length=100)
 	club_name = models.ForeignKey(Club, on_delete = models.CASCADE)
 	desc = models.TextField()
-	image = models.ImageField(upload_to = 'static/event_image', blank = True)
+	image = models.ImageField(upload_to = 'event_image', blank = True)
 	fees = models.IntegerField()
 	date =models.DateField()
 	smalldesc = models.TextField(null = True)
@@ -68,7 +68,7 @@ class Member(models.Model):
 
 class Gallery(models.Model):
 	ename = models.ForeignKey(Event, on_delete = models.CASCADE)
-	images = models.ImageField(upload_to = 'static/gallery', blank = True)
+	images = models.ImageField(upload_to = 'gallery', blank = True)
 
 	def __str__(self):
 		return self.ename.ename
