@@ -47,7 +47,7 @@
 						<div class = "col-md-4">
 							<a class="cardhover" href="{% url 'club_page1' club_name=c.cname %}" style="text-decoration:none;">
 								<div style = "width:300px; heigth:400px"class="card mb-3">
-									<img style = " heigth:100px;"class="card-img-top" src="/{{c.image}}"  alt="Card image cap">
+									<img style = " heigth:100px;"class="card-img-top" src="{{c.image.url}}"  alt="Card image cap">
 									<div class="card-body">
 										<h4 class="card-title" style = "color:black";>{{c.cname}}</h4>
 										<p class="card-text">{{c.shortdesc}}</p>

@@ -1,6 +1,6 @@
 {%extends 'club_page_base.html'%}
 {%block content%}
-<img class = "clubbg" class="img-fluid" src="/{{clubs.image}}" alt="No image">
+<img class = "clubbg" class="img-fluid" src=" {{clubs.image.url}}" alt="No image">
 <form action = "" method = "POST">
     {%csrf_token%}
     <div class="container">
@@ -27,7 +27,7 @@
                             {%for event in events%}
                             {%if event.popular == 1%}
                             <div class = "col-sm">
-                                <img class="card-img-top" src="/{{event.image}} " alt="No image">
+                                <img class="card-img-top" src="{{event.image.url}} " alt="No image">
                                 <h5 class="card-title">{{event.ename}}</h5>
                             </div>
                             {%endif%}
