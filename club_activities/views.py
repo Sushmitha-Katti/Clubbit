@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from club_activities.models import *
 from django.contrib.auth import authenticate, login ,logout
 from datetime import date
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 def home(request):
 	 if not request.user.is_authenticated:

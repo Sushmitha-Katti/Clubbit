@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'club_activities',
-    'clubregistrations'
+    'clubregistrations',
+     'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -80,9 +81,9 @@ WSGI_APPLICATION = 'club.wsgi.application'
 DATABASES = {
       'default': {
           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-          'NAME': 'club2',
-          'USER': 'sushmitha',
-          'PASSWORD': 'welcome',
+          'NAME': 'postgres',
+          'USER': 'postgres',
+          'PASSWORD': 'postgres',
           'HOST': 'localhost',
           'PORT': '5432',
       }

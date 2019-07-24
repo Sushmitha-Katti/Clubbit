@@ -15,7 +15,7 @@ class Profile(models.Model):
 	sem =  models.IntegerField(null = 'True')
 	
 	def __str__(self):
-		return self.usn
+		return self.user.username
 
 class Club(models.Model):
 	cname = models.CharField(max_length = 100)
